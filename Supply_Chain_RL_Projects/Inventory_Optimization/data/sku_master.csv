@@ -1,0 +1,16 @@
+sku_id,product_name,category,unit_cost,selling_price,weight_lbs,volume_cuft,supplier_id,avg_lead_time_days,lead_time_std,min_order_qty,is_promotional_item
+SKU001,Industrial Wrench 12in,Hand Tools,8.50,15.99,2.5,0.15,SUP_A,7,1.2,50,1
+SKU002,Safety Gloves Medium,Safety Equipment,3.20,7.99,0.3,0.05,SUP_B,14,2.5,100,0
+SKU003,LED Work Light 1000L,Lighting,22.00,45.99,3.2,0.25,SUP_A,10,1.8,25,1
+SKU004,Hydraulic Oil 5gal,Fluids,18.50,35.99,42.0,0.75,SUP_C,21,4.2,20,0
+SKU005,Drill Bit Set 20pc,Power Tool Access,12.00,24.99,1.8,0.12,SUP_A,7,1.0,40,1
+SKU006,Safety Goggles Clear,Safety Equipment,4.50,9.99,0.2,0.04,SUP_B,14,2.0,100,0
+SKU007,Extension Cord 50ft,Electrical,15.00,29.99,4.5,0.30,SUP_D,12,2.2,30,0
+SKU008,Cleaning Solvent 1gal,Chemicals,8.00,16.99,8.5,0.15,SUP_C,18,3.5,40,0
+SKU009,Precision Screwdriver Set,Hand Tools,9.50,19.99,1.2,0.08,SUP_A,7,1.5,60,1
+SKU010,Hard Hat Yellow,Safety Equipment,6.00,12.99,0.8,0.20,SUP_B,10,1.8,80,0
+SKU011,Measuring Tape 25ft,Measuring Tools,5.50,11.99,0.6,0.06,SUP_A,7,1.0,70,0
+SKU012,Air Filter Industrial,HVAC,14.00,28.99,3.0,0.40,SUP_E,28,5.0,30,0
+SKU013,Metal File Set 6pc,Hand Tools,7.00,14.99,2.0,0.10,SUP_A,7,1.2,50,1
+SKU014,First Aid Kit 50pc,Safety Equipment,18.00,36.99,4.0,0.35,SUP_B,21,3.0,20,0
+SKU015,Lock-Out Tag-Out Kit,Safety Equipment,25.00,52.99,2.5,0.22,SUP_B,14,2.5,15,0

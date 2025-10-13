@@ -1,0 +1,8 @@
+supplier_id,truck_type,max_weight_lbs,max_volume_cuft,cost_per_load,cost_per_mile,avg_distance_miles,min_utilization_pct,max_skus_per_load
+SUP_A,Standard,20000,1200,850.00,2.50,450,75,50
+SUP_A,LTL,10000,600,450.00,3.00,450,50,30
+SUP_B,Standard,22000,1400,900.00,2.40,380,80,60
+SUP_B,LTL,11000,700,480.00,2.90,380,50,35
+SUP_C,Tanker,30000,1800,1200.00,2.80,620,85,15
+SUP_D,Standard,20000,1200,880.00,2.55,520,75,50
+SUP_E,Standard,21000,1300,920.00,2.60,580,78,55
