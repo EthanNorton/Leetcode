@@ -2,6 +2,8 @@
 Exercise 2.1: Matrix Operations with NumPy
 ==========================================
 
+✅ COMPLETED SOLUTION - Use as reference after attempting the template!
+
 Goal: Master NumPy matrix operations and broadcasting.
 
 Requirements:
@@ -33,11 +35,9 @@ def matrix_vector_multiplication():
     w = np.array([0.5, -1.0])  # (2,) - 2 weights
     b = 0.2  # scalar bias
     
-    # TODO: Compute y = X @ w + b
-    # Hint: Use @ for matrix multiplication, broadcasting handles the +b
-    
-    # Your code here
-    y = None  # Replace with: X @ w + b
+    # Compute: y = X @ w + b
+    # Matrix multiply, then broadcast bias
+    y = X @ w + b
     
     return y
 
@@ -51,16 +51,11 @@ def vectorized_operations():
     a = np.array([1, 2, 3, 4, 5])
     b = np.array([10, 20, 30, 40, 50])
     
-    # TODO: Compute the following WITHOUT loops:
-    # 1. Element-wise sum: a + b
-    # 2. Element-wise product: a * b
-    # 3. Element-wise power: a ** 2
-    # 4. Dot product: a @ b (or np.dot(a, b))
-    
-    sum_result = None  # Your code
-    product_result = None  # Your code
-    power_result = None  # Your code
-    dot_product = None  # Your code
+    # All vectorized - no loops!
+    sum_result = a + b           # Element-wise sum
+    product_result = a * b        # Element-wise product
+    power_result = a ** 2         # Square each element
+    dot_product = a @ b           # Dot product (or np.dot(a, b))
     
     return {
         'sum': sum_result,
@@ -84,11 +79,8 @@ def broadcasting_example():
     # Vector (2,)
     vector = np.array([10, 20])
     
-    # TODO: Add vector to each row of matrix using broadcasting
-    # Result should be (3, 2)
-    # Hint: Broadcasting will automatically expand vector to match matrix
-    
-    result = None  # Your code: matrix + vector (broadcasting!)
+    # Broadcasting automatically expands vector to match matrix
+    result = matrix + vector  # NumPy handles the expansion!
     
     return result
 
@@ -104,16 +96,11 @@ def matrix_operations():
                   [9, 10],
                   [11, 12]])
     
-    # TODO: Compute the following:
-    # 1. A @ B (matrix multiplication)
-    # 2. A.T (transpose)
-    # 3. np.sum(A, axis=0) (sum along columns)
-    # 4. np.sum(A, axis=1) (sum along rows)
-    
-    matmul = None  # A @ B
-    transpose = None  # A.T
-    sum_cols = None  # np.sum(A, axis=0)
-    sum_rows = None  # np.sum(A, axis=1)
+    # Matrix operations
+    matmul = A @ B                    # Matrix multiplication
+    transpose = A.T                   # Transpose
+    sum_cols = np.sum(A, axis=0)      # Sum along columns (axis=0)
+    sum_rows = np.sum(A, axis=1)      # Sum along rows (axis=1)
     
     return {
         'matmul': matmul,
