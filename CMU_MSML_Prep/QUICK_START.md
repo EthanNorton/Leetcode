@@ -66,22 +66,34 @@ python -c "import numpy, pandas, matplotlib, torch; print('All good!')"
 
 ### Step 4: Start Your First Exercise (30 minutes)
 
+**🎯 Recommended Workflow:**
+1. **Start with Templates** (practice from scratch)
+2. **Implement your solution**
+3. **Test and debug**
+4. **Compare with Solutions** (learn from differences)
+
 **If Beginner:**
 ```bash
-# Start with Core Python
+# Start with Template (recommended!)
+python "Leetcode/CMU_MSML_Prep/Templates/01_Core_Python/exercise_1_normalize_template.py"
+
+# After implementing, compare with solution:
 python "Leetcode/CMU_MSML_Prep/00_Skill_Exercises/01_Core_Python/exercise_1_normalize.py"
 ```
 
 **If Intermediate:**
 ```bash
-# Start with NumPy
+# Start with NumPy template
+python "Leetcode/CMU_MSML_Prep/Templates/02_NumPy/exercise_2_matrix_ops_template.py"
+
+# Compare with solution after
 python "Leetcode/CMU_MSML_Prep/00_Skill_Exercises/02_NumPy/exercise_2_matrix_ops.py"
 ```
 
 **If Advanced:**
 ```bash
-# Start with Linear Regression
-# (Create your own or use existing implementations)
+# Use templates as starting point, or create your own
+python "Leetcode/CMU_MSML_Prep/Templates/03_Loss_Gradients/exercise_3_mse_loss_template.py"
 ```
 
 ---
@@ -94,9 +106,10 @@ python "Leetcode/CMU_MSML_Prep/00_Skill_Exercises/02_NumPy/exercise_2_matrix_ops
 - **`SKILLS_CHECKLIST.md`** - Track your progress
 
 ### Exercises
-- **`00_Skill_Exercises/`** - All practice exercises
-- Each exercise has TODOs and tests
-- Start with Week 1 exercises
+- **`Templates/`** - ⭐ **START HERE!** Blank templates to practice from scratch
+- **`00_Skill_Exercises/`** - Completed exercises (compare after implementing templates)
+- Each template has TODOs and tests ready to uncomment
+- Recommended: Templates → Implement → Test → Compare
 
 ### Resources
 - **`MASTER_INDEX.md`** - All problems indexed
