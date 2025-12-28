@@ -41,6 +41,7 @@ These guides will teach you:
 ### Step 3: Compare with Solutions
 1. Once you've implemented and tested, look at:
    - `../00_Skill_Exercises/` folder
+   - **Side-by-side guides** (e.g., `02_NumPy/SIDE_BY_SIDE_COMPARISON.md`)
    - Compare your approach with the solution
    - Learn from differences
 
@@ -61,6 +62,8 @@ These guides will teach you:
   - Vectorized operations
   - Broadcasting
   - Matrix operations
+- **`02_NumPy/SIDE_BY_SIDE_COMPARISON.md`** - ⭐ **NEW!** Template vs solution comparison guide
+- **`02_NumPy/NEXT_STEPS.md`** - Guidance for next exercises
 
 ### Loss Functions
 - **`03_Loss_Gradients/exercise_3_mse_loss_template.py`**
