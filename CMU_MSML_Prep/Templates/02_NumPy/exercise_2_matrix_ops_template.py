@@ -2,6 +2,8 @@
 Exercise 2.1: Matrix Operations with NumPy - BLANK TEMPLATE
 ===========================================================
 
+📝 TEMPLATE FILE - Fill in the TODO sections below!
+
 Goal: Master NumPy matrix operations and broadcasting.
 
 Requirements:
@@ -43,7 +45,7 @@ def matrix_vector_multiplication():
     # Hint: Use @ for matrix multiplication, broadcasting handles the +b
     
     # Your code here
-    y = None  # Replace with: X @ w + b
+    y = X @ w + b  # Replace with: X @ w + b
     
     return y
 
@@ -63,10 +65,10 @@ def vectorized_operations():
     # 3. Element-wise power: a ** 2
     # 4. Dot product: a @ b (or np.dot(a, b))
     
-    sum_result = None  # Your code
-    product_result = None  # Your code
-    power_result = None  # Your code
-    dot_product = None  # Your code
+    sum_result = a + b  # Your code
+    product_result = a * b  # Your code
+    power_result = a ** 2 # Your code
+    dot_product = a @ b # Your code
     
     return {
         'sum': sum_result,
@@ -94,7 +96,7 @@ def broadcasting_example():
     # Result should be (3, 2)
     # Hint: Broadcasting will automatically expand vector to match matrix
     
-    result = None  # Your code: matrix + vector (broadcasting!)
+    result = matrix + vector # Your code: matrix + vector (broadcasting!)
     
     return result
 
@@ -116,10 +118,10 @@ def matrix_operations():
     # 3. np.sum(A, axis=0) (sum along columns)
     # 4. np.sum(A, axis=1) (sum along rows)
     
-    matmul = None  # A @ B
-    transpose = None  # A.T
-    sum_cols = None  # np.sum(A, axis=0)
-    sum_rows = None  # np.sum(A, axis=1)
+    matmul = A @ B # A @ B
+    transpose = A.T  # A.T
+    sum_cols = np.sum(A, axis=0) # np.sum(A, axis=0)
+    sum_rows = np.sum(A, axis=1) # np.sum(A, axis=1)
     
     return {
         'matmul': matmul,
@@ -187,18 +189,18 @@ if __name__ == "__main__":
     print("Don't look at the solution folder until you've tried!\n")
     
     # Uncomment these as you implement each function:
-    # test_matrix_vector_multiplication()
-    # test_vectorized_operations()
-    # test_broadcasting()
+    test_matrix_vector_multiplication()
+    test_vectorized_operations()
+    test_broadcasting()
     
     # Uncomment this after implementing matrix_operations():
-    # results = matrix_operations()
-    # print(f"\nMatrix A:\n{np.array([[1, 2, 3], [4, 5, 6]])}")
-    # print(f"\nMatrix B:\n{np.array([[7, 8], [9, 10], [11, 12]])}")
-    # print(f"\nA @ B:\n{results['matmul']}")
-    # print(f"\nA.T:\n{results['transpose']}")
-    # print(f"\nSum along columns: {results['sum_cols']}")
-    # print(f"\nSum along rows: {results['sum_rows']}")
+    results = matrix_operations()
+    print(f"\nMatrix A:\n{np.array([[1, 2, 3], [4, 5, 6]])}")
+    print(f"\nMatrix B:\n{np.array([[7, 8], [9, 10], [11, 12]])}")
+    print(f"\nA @ B:\n{results['matmul']}")
+    print(f"\nA.T:\n{results['transpose']}")
+    print(f"\nSum along columns: {results['sum_cols']}")
+    print(f"\nSum along rows: {results['sum_rows']}")
     
     print("\n" + "="*60)
     print("Key Takeaways:")
