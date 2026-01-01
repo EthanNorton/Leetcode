@@ -34,12 +34,11 @@ def mse_loss(y_true, y_pred):
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
     
-    # TODO: Implement MSE
+    # SOLUTION: Implement MSE
     # Formula: mean((y_true - y_pred)^2)
-    # Hint: Use vectorized operations, no loops!
+    # Vectorized implementation (no loops!)
     
-    # Your code here
-    loss = None  # Replace with: np.mean((y_true - y_pred)**2)
+    loss = np.mean((y_true - y_pred)**2)
     
     return loss
 
@@ -63,13 +62,12 @@ def mse_loss_gradient(y_true, y_pred, X):
     y_pred = np.array(y_pred)
     X = np.array(X)
     
-    # TODO: Compute gradient
+    # SOLUTION: Compute gradient
     # Formula: (2/m) * X.T @ (y_pred - y_true)
     # Where m = number of samples
     
-    # Your code here
     m = len(y_true)
-    gradient = None  # Replace with: (2/m) * X.T @ (y_pred - y_true)
+    gradient = (2/m) * X.T @ (y_pred - y_true)
     
     return gradient
 
@@ -83,9 +81,10 @@ def mae_loss(y_true, y_pred):
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
     
-    # TODO: Implement MAE
-    # Your code here
-    loss = None  # Replace with: np.mean(np.abs(y_true - y_pred))
+    # SOLUTION: Implement MAE
+    # Formula: mean(|y_true - y_pred|)
+    
+    loss = np.mean(np.abs(y_true - y_pred))
     
     return loss
 
