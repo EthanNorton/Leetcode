@@ -16,19 +16,17 @@ def runningSum(nums):
     # Each next element is: previous result + current num
     
     # Option 1: Build result array step by step
-    # result = []
-    # current_sum = 0
-    # for num in nums:
-    #     current_sum += num
-    #     result.append(current_sum)
-    # return result
+    result = []
+    current_sum = 0
+    for num in nums:
+        current_sum += num
+        result.append(current_sum)
+    return result
     
     # Option 2: Modify nums in place (if allowed)
     # for i in range(1, len(nums)):
     #     nums[i] = nums[i] + nums[i-1]
     # return nums
-    
-    pass
 
 # Test cases
 if __name__ == "__main__":

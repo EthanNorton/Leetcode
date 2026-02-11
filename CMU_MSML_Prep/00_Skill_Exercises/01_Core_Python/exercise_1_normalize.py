@@ -2,6 +2,8 @@
 Exercise 1.1: Normalization Function
 =====================================
 
+✅ COMPLETED SOLUTION - Use as reference after attempting the template!
+
 Goal: Implement z-score normalization from scratch using clean Python.
 
 Requirements:

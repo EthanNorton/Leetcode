@@ -5,6 +5,8 @@ Exercise 1.1: Normalization Function - SIMPLE VERSION
 This is a simplified version with step-by-step guidance.
 Follow along and fill in each step!
 
+📝 TEMPLATE FILE - Fill in the TODO sections below!
+
 What does normalization do?
 - Takes numbers like [1, 2, 3, 4]
 - Makes them have mean = 0 and standard deviation = 1
@@ -67,7 +69,11 @@ def normalize(xs):
     # Write: mean = sum(xs) / len(xs)
     
     # Your code here:
-    mean = sum(xs) / len(xs)
+    import numpy as np
+    xs_array = np.array(xs)
+    mean = np.mean(xs_array)
+    return ((xs_array - mean) / std).tolist()
+
     
     
     # ============================================
@@ -100,8 +106,9 @@ def normalize(xs):
     # Write: std = variance ** 0.5
     
     # Your code here:
-    std = variance ** 0.5
-    
+    std = np.std(xs_array, ddof=0)
+    if std == 0:
+        return np.zeros_like(xs_array).tolist()
     
     # ============================================
     # STEP 6: Handle division by zero
