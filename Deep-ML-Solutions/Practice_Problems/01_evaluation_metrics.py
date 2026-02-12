@@ -1,22 +1,49 @@
 """
 CMU Practice Problem: Evaluation Metrics
 10-701/715: Introduction to Machine Learning
+
+===========================================
+LLM EVALUATION MOTIVATION
+===========================================
+LLM outputs are often evaluated by classifiers or human judges that produce
+binary labels (e.g., "helpful"/"not helpful", "safe"/"unsafe", "correct"/"wrong").
+This file provides the core metrics for those binary classification tasks.
+
+Common LLM eval scenarios:
+  - Safety classifier: toxic vs non-toxic (e.g., RTP toxicity scoring)
+  - Factuality: correct vs hallucinated
+  - Instruction following: followed vs not followed
+  - Helpfulness: helpful vs unhelpful
+
+Once you have y_true (human/model labels) and y_pred (LLM or classifier outputs),
+use these functions to compute metrics and compare models.
 """
 
 import numpy as np
 
+
 def calculate_metrics(tp, fp, fn, tn):
     """
     Calculate classification metrics from confusion matrix components.
-    
+
     Args:
         tp: True Positives
         fp: False Positives
         fn: False Negatives
         tn: True Negatives
-    
+
     Returns:
         Dictionary with accuracy, precision, recall, f1_score
+
+    LLM EVAL USE:
+        - Accuracy: Overall correctness when classes are balanced. Often misleading
+          for imbalanced data (e.g., few toxic examples). Use with caution.
+        - Precision: Fraction of positive predictions that are correct. Important
+          when false positives are costly (e.g., wrongly flagging safe content).
+        - Recall: Fraction of actual positives that were caught. Important when
+          missing positives is costly (e.g., safety filter missing toxic content).
+        - F1: Balances precision and recall. Good default when you care about
+          both false positives and false negatives equally.
     """
     # Total predictions
     total = tp + fp + fn + tn
@@ -48,13 +75,21 @@ def calculate_metrics(tp, fp, fn, tn):
 def confusion_matrix_from_predictions(y_true, y_pred):
     """
     Calculate confusion matrix from predictions.
-    
+
     Args:
-        y_true: True labels (binary: 0 or 1)
-        y_pred: Predicted labels (binary: 0 or 1)
-    
+        y_true: True labels (binary: 0 or 1) - e.g., human annotations or gold labels
+        y_pred: Predicted labels (binary: 0 or 1) - e.g., classifier output or thresholded score
+
     Returns:
         Dictionary with tp, fp, fn, tn
+
+    LLM EVAL USE:
+        - y_true: Labels from human raters, answer key, or another trusted model.
+        - y_pred: Output from a toxicity classifier (e.g., Perspective API), factuality
+          checker, or instruction-following detector. For continuous scores, convert
+          to binary with a threshold (e.g., toxicity > 0.5 -> 1).
+        - Example: Evaluate RTP toxicity by thresholding toxicity scores and comparing
+          to human-annotated safe/unsafe labels.
     """
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
@@ -120,7 +155,28 @@ if __name__ == "__main__":
     print(f"  F1-Score:  {metrics2['f1_score']:.3f}")
     print()
     
+    # =========================================================================
+    # LLM EVAL EXAMPLE: Toxicity classification (like RTP dataset)
+    # =========================================================================
+    print()
     print("=" * 60)
-    print("✅ All tests completed!")
+    print("LLM EVAL EXAMPLE: Toxicity Classification")
+    print("=" * 60)
+    print()
+    print("Scenario: You threshold toxicity scores (e.g., from Real Toxicity Prompts)")
+    print("          and compare to human labels. 1 = toxic, 0 = safe.")
+    print()
+    # Simulated: 10 prompts, human labels vs model's toxicity classifier
+    y_true_llm = np.array([1, 0, 0, 1, 0, 0, 1, 0, 1, 0])  # Human labels
+    y_pred_llm = np.array([1, 0, 0, 0, 1, 0, 1, 0, 1, 1])   # Classifier (FP on idx 4, FN on idx 3)
+    cm_llm = confusion_matrix_from_predictions(y_true_llm, y_pred_llm)
+    metrics_llm = calculate_metrics(**cm_llm)
+    print("Confusion matrix (TP, FP, FN, TN):", cm_llm)
+    print("F1 (balanced metric for imbalanced safety data):", f"{metrics_llm['f1_score']:.3f}")
+    print("Precision (avoid over-flagging safe content):", f"{metrics_llm['precision']:.3f}")
+    print("Recall (catch toxic content):", f"{metrics_llm['recall']:.3f}")
+    print()
+    print("=" * 60)
+    print("All tests completed!")
     print("=" * 60)
 
