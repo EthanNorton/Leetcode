@@ -252,6 +252,117 @@ def ridge_regression_closed_form(X, y, lambda_reg):
 
 
 # ============================================================================
+# PROBLEM 9: Sigmoid Function (Easy)
+# ============================================================================
+
+def sigmoid(z):
+    """sigma(z) = 1 / (1 + exp(-z))"""
+    z = np.array(z)
+    return 1.0 / (1.0 + np.exp(-np.clip(z, -500, 500)))  # Clip for stability
+
+
+# ============================================================================
+# PROBLEM 10: Softmax (Medium)
+# ============================================================================
+
+def softmax(z):
+    """Numerically stable softmax"""
+    z = np.array(z)
+    z_stable = z - np.max(z)
+    exp_z = np.exp(z_stable)
+    return exp_z / exp_z.sum()
+
+
+# ============================================================================
+# PROBLEM 11: Binary Cross-Entropy Loss (Medium)
+# ============================================================================
+
+def binary_cross_entropy_loss(y_true, y_pred):
+    """BCE with clipping to avoid log(0)"""
+    y_pred = np.clip(np.array(y_pred), 1e-7, 1 - 1e-7)
+    y_true = np.array(y_true)
+    m = len(y_true)
+    return -np.sum(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred)) / m
+
+
+# ============================================================================
+# PROBLEM 12: Add Bias Column (Easy)
+# ============================================================================
+
+def add_bias_column(X):
+    """Add column of ones as first column"""
+    X = np.array(X)
+    m = X.shape[0]
+    return np.hstack([np.ones((m, 1)), X])
+
+
+# ============================================================================
+# PROBLEM 13: Z-Score Standardization (Easy)
+# ============================================================================
+
+def standardize_features(X):
+    """Z-score standardize each column"""
+    X = np.array(X, dtype=float)
+    mean = np.mean(X, axis=0)
+    std = np.std(X, axis=0)
+    std[std == 0] = 1.0  # Avoid division by zero
+    X_std = (X - mean) / std
+    return X_std, mean, std
+
+
+# ============================================================================
+# PROBLEM 14: Lasso Regression (L1) Gradient (Hard)
+# ============================================================================
+
+def lasso_gradient_step(X, y, w, learning_rate, lambda_l1):
+    """One gradient descent step with L1 penalty"""
+    X = np.array(X)
+    y = np.array(y)
+    w = np.array(w)
+    if y.ndim == 1:
+        y = y.reshape(-1, 1)
+    if w.ndim == 1:
+        w = w.reshape(-1, 1)
+    m = X.shape[0]
+    error = (X @ w - y).flatten()
+    mse_grad = (X.T @ error) / m
+    l1_subgrad = np.sign(w)
+    l1_subgrad[w == 0] = 0
+    gradient = mse_grad.reshape(-1, 1) + lambda_l1 * l1_subgrad
+    w_new = w - learning_rate * gradient
+    loss = np.mean(error**2) + lambda_l1 * np.sum(np.abs(w))
+    return w_new.flatten(), loss
+
+
+# ============================================================================
+# PROBLEM 15: Polynomial Features (Medium)
+# ============================================================================
+
+def polynomial_features(x, degree=2):
+    """Create [1, x, x^2, ..., x^degree]"""
+    x = np.array(x).reshape(-1, 1)
+    cols = [x**d for d in range(degree + 1)]
+    return np.hstack(cols)
+
+
+# ============================================================================
+# PROBLEM 16: Precision, Recall, F1 (Medium)
+# ============================================================================
+
+def precision_recall_f1(y_true, y_pred):
+    """Compute precision, recall, F1 for binary classification"""
+    y_true = np.array(y_true)
+    y_pred = np.array(y_pred)
+    tp = np.sum((y_true == 1) & (y_pred == 1))
+    fp = np.sum((y_true == 0) & (y_pred == 1))
+    fn = np.sum((y_true == 1) & (y_pred == 0))
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    return precision, recall, f1
+
+
+# ============================================================================
 # TESTS
 # ============================================================================
 
@@ -340,10 +451,89 @@ def test_problem_8():
     y = np.array([3, 5, 7])
     lambda_reg = 0.1
     w = ridge_regression_closed_form(X, y, lambda_reg)
-    
+
     assert w is not None, "Weights should not be None"
     assert len(w) == 2, "Should have 2 weights"
     print(f"✓ Problem 8 passed! Weights: {w}")
+
+
+def test_problem_9():
+    """Test sigmoid"""
+    print("\nTesting Problem 9: Sigmoid...")
+    assert np.isclose(sigmoid(0), 0.5), "sigmoid(0) should be 0.5"
+    assert sigmoid(100) > 0.99, "sigmoid(100) should be ~1"
+    print("✓ Problem 9 passed!")
+
+
+def test_problem_10():
+    """Test softmax"""
+    print("\nTesting Problem 10: Softmax...")
+    z = np.array([1, 2, 3])
+    p = softmax(z)
+    assert np.isclose(p.sum(), 1.0), "Probabilities should sum to 1"
+    assert np.all(p >= 0), "Probabilities should be non-negative"
+    print("✓ Problem 10 passed!")
+
+
+def test_problem_11():
+    """Test BCE loss"""
+    print("\nTesting Problem 11: Binary Cross-Entropy...")
+    y_true = np.array([1, 0, 1])
+    y_pred = np.array([0.9, 0.1, 0.8])
+    loss = binary_cross_entropy_loss(y_true, y_pred)
+    assert loss >= 0, "Loss should be non-negative"
+    print("✓ Problem 11 passed!")
+
+
+def test_problem_12():
+    """Test add bias column"""
+    print("\nTesting Problem 12: Add Bias Column...")
+    X = np.array([[1, 2], [3, 4]])
+    X_b = add_bias_column(X)
+    assert X_b.shape[1] == X.shape[1] + 1, "Should add one column"
+    assert np.all(X_b[:, 0] == 1), "First column should be ones"
+    print("✓ Problem 12 passed!")
+
+
+def test_problem_13():
+    """Test standardization"""
+    print("\nTesting Problem 13: Z-Score Standardization...")
+    X = np.array([[1, 2], [3, 4], [5, 6]])
+    X_std, mean, std = standardize_features(X)
+    assert np.allclose(X_std.mean(axis=0), 0, atol=1e-10), "Mean should be ~0"
+    assert np.allclose(X_std.std(axis=0), 1, atol=1e-10), "Std should be ~1"
+    print("✓ Problem 13 passed!")
+
+
+def test_problem_14():
+    """Test Lasso gradient step"""
+    print("\nTesting Problem 14: Lasso Gradient Step...")
+    X = np.array([[1, 1], [1, 2]])
+    y = np.array([2, 3])
+    w = np.array([0.0, 0.0])
+    w_new, loss = lasso_gradient_step(X, y, w, 0.1, 0.01)
+    assert w_new.shape == w.shape, "Shape should not change"
+    print("✓ Problem 14 passed!")
+
+
+def test_problem_15():
+    """Test polynomial features"""
+    print("\nTesting Problem 15: Polynomial Features...")
+    x = np.array([1, 2, 3])
+    X_poly = polynomial_features(x, degree=2)
+    assert X_poly.shape == (3, 3), "Should be (3, 3)"
+    assert np.allclose(X_poly[:, 2], x**2), "Third column should be x^2"
+    print("✓ Problem 15 passed!")
+
+
+def test_problem_16():
+    """Test precision, recall, F1"""
+    print("\nTesting Problem 16: Precision, Recall, F1...")
+    y_true = np.array([1, 0, 1, 0, 1])
+    y_pred = np.array([1, 0, 1, 1, 0])
+    p, r, f1 = precision_recall_f1(y_true, y_pred)
+    assert 0 <= p <= 1 and 0 <= r <= 1 and 0 <= f1 <= 1
+    print("✓ Problem 16 passed!")
 
 
 if __name__ == "__main__":
@@ -360,7 +550,15 @@ if __name__ == "__main__":
     test_problem_6()
     test_problem_7()
     test_problem_8()
-    
+    test_problem_9()
+    test_problem_10()
+    test_problem_11()
+    test_problem_12()
+    test_problem_13()
+    test_problem_14()
+    test_problem_15()
+    test_problem_16()
+
     print("\n" + "="*60)
     print("All tests passed!")
     print("="*60)
