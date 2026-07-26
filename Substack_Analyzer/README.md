@@ -4,6 +4,8 @@ A comprehensive Python data science project that analyzes Substack newsletters t
 - 🔮 **Predict future article topics** using NLP and machine learning
 - 📚 **Recommend relevant books** based on content themes
 - 📈 **Visualize growth areas** with interactive timelines
+- 🎯 **Score your mastery** across consistency, depth, diversity, and growth
+- 📊 **Interactive dashboard** with monthly filtering and real-time analytics
 
 ## Features
 
@@ -13,17 +15,28 @@ A comprehensive Python data science project that analyzes Substack newsletters t
 - Generates predictions for future article topics with confidence scores
 - Analyzes topic evolution over time
 
-### 2. Book Recommendations
-- Curated database of technical and educational books
+### 2. Mastery Scoring (NEW! 🎯)
+- **Consistency Score**: Publishing regularity and frequency
+- **Depth Score**: Article length and content quality
+- **Diversity Score**: Topic variety and vocabulary richness
+- **Growth Score**: Improvement trajectory over time
+- **Engagement Score**: Title effectiveness and content structure
+- Overall mastery level from Beginner to Master
+- Strengths, growth areas, and actionable recommendations
+
+### 3. Book Recommendations
+- Curated database of 25+ technical and educational books
 - Topic-based relevance scoring
 - Personalized recommendations based on historical content and predictions
 - Explains why each book is recommended
+- Filter by topics and relevance
 
-### 3. Growth Visualization
+### 4. Growth Visualization
 - Interactive timeline showing content evolution
 - Topic distribution charts
 - Word clouds of key themes
 - Trend analysis and prediction zones
+- Monthly filtering for focused analysis
 
 ## Installation
 
@@ -47,7 +60,31 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 
 ## Usage
 
-### Basic Usage
+### 🌟 Interactive Dashboard (Recommended)
+
+Launch the interactive web dashboard for the best experience:
+
+```bash
+# Mac/Linux
+./run_dashboard.sh
+
+# Windows
+run_dashboard.bat
+
+# Or manually
+streamlit run dashboard.py
+```
+
+The dashboard provides:
+- Real-time analytics with monthly filtering
+- Mastery scoring across 5 dimensions
+- Topic suggestions timeline
+- Personalized book recommendations
+- Growth tracking visualizations
+
+See [DASHBOARD_README.md](DASHBOARD_README.md) for complete dashboard documentation.
+
+### Command Line Usage
 
 Analyze a Substack newsletter:
 
@@ -92,14 +129,23 @@ The analyzer generates the following files in the output directory:
 ```
 Substack_Analyzer/
 │
-├── substack_analyzer.py      # Main application entry point
+├── dashboard.py               # Interactive Streamlit dashboard (NEW!)
+├── mastery_scorer.py          # Mastery scoring engine (NEW!)
+├── substack_analyzer.py       # Command-line application
 ├── data_collector.py          # Substack data collection module
 ├── article_predictor.py       # ML-based article prediction
 ├── book_recommender.py        # Book recommendation engine
 ├── growth_visualizer.py       # Visualization generation
 ├── utils.py                   # Utility functions
+├── example_usage.py           # Programmatic usage examples
+├── test_analyzer.py           # Test suite
+├── run_dashboard.sh           # Dashboard launcher (Mac/Linux)
+├── run_dashboard.bat          # Dashboard launcher (Windows)
 ├── requirements.txt           # Python dependencies
-└── README.md                  # This file
+├── README.md                  # This file
+├── DASHBOARD_README.md        # Dashboard documentation
+├── QUICKSTART.md             # Quick start guide
+└── config.example.json        # Configuration template
 ```
 
 ## How It Works
