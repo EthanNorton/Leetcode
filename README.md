@@ -44,6 +44,18 @@ Welcome to my LeetCode solutions repository! I am solving these to get better co
 
 ---
 
+## 📰 Substack Content Dashboard
+
+- **[Substack Dashboard](SUBSTACK_DASHBOARD_README.md)** - Interactive dashboard for analyzing Substack posts:
+  - ✅ Fetch content by username
+  - ✅ **3-month period selection** (quarterly intervals)
+  - ✅ Content analytics and visualizations
+  - ✅ Word count tracking and post distribution
+
+**Quick Start:** `streamlit run substack_dashboard.py` or `./run_substack_dashboard.sh`
+
+---
+
 ## 📖 NeetCode 50 Introductions
 
 - **[NeetCode 50 Introductions](NeetCode_50_Introductions/)** - Structured problem-solving practice:
