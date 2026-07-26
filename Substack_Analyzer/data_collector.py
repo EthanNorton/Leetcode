@@ -24,6 +24,14 @@ class SubstackCollector:
             substack_url: Base URL of the Substack (e.g., https://example.substack.com)
         """
         self.substack_url = substack_url.rstrip('/')
+        
+        # Handle different URL formats
+        if '@' in substack_url:
+            # Convert profile URL to newsletter URL
+            # https://substack.com/@username -> https://username.substack.com
+            username = substack_url.split('@')[-1].split('/')[0].split('?')[0]
+            self.substack_url = f"https://{username}.substack.com"
+        
         self.rss_url = f"{self.substack_url}/feed"
         self.session = requests.Session()
         self.session.headers.update({
