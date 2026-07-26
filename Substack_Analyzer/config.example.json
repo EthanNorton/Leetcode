@@ -1,0 +1,31 @@
+{
+  "default_substack_url": "https://substack.com/@ethannorton",
+  "max_articles": 50,
+  "num_predictions": 10,
+  "num_books": 15,
+  "output_dir": "./output",
+  "dashboard": {
+    "port": 8501,
+    "cache_ttl": 3600,
+    "theme": "light"
+  },
+  "mastery_scoring": {
+    "weights": {
+      "consistency": 0.25,
+      "depth": 0.20,
+      "diversity": 0.20,
+      "growth": 0.20,
+      "engagement": 0.15
+    }
+  },
+  "visualization": {
+    "word_cloud": {
+      "width": 1600,
+      "height": 800,
+      "max_words": 100
+    },
+    "timeline": {
+      "height": 900
+    }
+  }
+}
